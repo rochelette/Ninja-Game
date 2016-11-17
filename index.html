@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<head>
+	<title>NINJA-GOLD-GAME</title>
+</head>
+
+<body>
+
+	<div class = "col-xs-2 attemp">
+						<br>YOU ONLY HAVE ATTEMPTS<input  id = "Attempts" class="form-control  textbox-margin" value = 20 disabled> 
+	</div>
+	
+	</div>
+
+	<div id = "container">
+		
+		    <img class = "pic-ninja" src = "Images/me.gif"></div>
+
+		<div class = "page-whole" >
+			<div class = "page" >
+				<div class ="form-inline" >
+					
+					<marquee direction="right"><font face = "Copperplate Gothic Bold"><center><h1>WELCOME TO NINJA GOLD!!!</h1></center></font></marquee>
+
+
+
+
+                
+					<div class = "button-holder btn-group">
+
+						<button type="button" class = "buttons btn btn-primary" id = "ButtonCave" >CAVE</button>
+						<button type="button" class = "buttons btn btn-primary" id = "ButtonHouse" >HOUSE</button>
+						<button type="button" class = "buttons btn btn-primary " id = "ButtonMine"  >MINE</button>
+						<button type="button" class = "buttons btn btn-primary" id = "ButtonCasino">CASINO</button>
+					</div>
+
+						<div class = "new-game">
+						<button class = " btn btn-primary btn-new-game" id = "ButtonNewGame">NEW GAME</button>
+						</div>
+
+                    
+					</div>
+				 	</div>
+
+					 <div class = "pic1" >
+							<img src = "Images/Cave.jpg" class = "img">
+							<img src = "Images/House.jpg" class = "img img-leftpadding">		
+					</div><div class = "pic" >
+							<img src = "Images/Goldmine.jpg" class = "img">
+							<img src = "Images/Casino.jpg" class = "img img-leftpadding" >
+					</div>
+
+
+				
+
+					<div id = "cont" class="container showback">
+							<div class = "col-xs-3 logtextbox">
+								<font color = "white"><center><strong>Total Gains:</strong><input  id = "gained" class="form-control col-sm-1 textbox-margin" value = 0 disabled> </center></font>
+							</div>
+
+							<div class = "col-xs-2 logtextbox" >
+								<font color = "white"><center><strong>Total losses:</strong> </center></font><input id = "lost"  class="form-control col-sm-1 textbox-margin" value = 0 readonly>
+							</div><center><h3>Logs</h3></center>
+							<ul class="nav nav-tabs">
+								<li class = "active"><a data-toggle="tab" href="#log1">All</a></li>
+								<li><a data-toggle="tab" href="#log2">Wins</a></li>
+								<li><a data-toggle="tab" href="#log3">Losses</a></li>
+							</ul>
+						</center>
+
+						<div class="tab-content showback">
+
+							<div id="log1" class="tab-pane fade in active pan-style"  >
+
+							</div>
+							<div id="log2" class="tab-pane fade pan-style">
+
+							</div>
+							<div id="log3" class="tab-pane fade pan-style">
+
+							</div> 
+						</div> 
+					</div> 
+
+
+			
+			</div>
+			
+			<script type="text/javascript" src = "js/jquery.min.js"></script>
+			<script type="text/javascript" src = "js/bootstrap.js"></script>
+			<script>
+				var Attempts = 20;
+				var Gold = 0;
+				var Percent = 0;
+				var Loses = [0];
+				var Wins = [0];
+				var Events = [];
+				var Ongame =  -1;
+
+				function output(){
+					if(Events[Ongame]['amount']>0){
+						$("#log1").append("<p class = 'win'> Location :"+Events[Ongame]['location']+"; Time: "+Events[Ongame]['time']+"; Amount: "+Events[Ongame]['amount']+"</p>");	
+						$("#log2").append("<p class = 'win'> Location :"+Events[Ongame]['location']+"; Time: "+Events[Ongame]['time']+"; Amount: "+Events[Ongame]['amount']+"</p>");	
+					}
+					else if(Events[Ongame]['amount']<0){
+						$("#log1").append("<p class = 'lose'> Location :"+Events[Ongame]['location']+"; Time: "+Events[Ongame]['time']+"; Amount: "+Events[Ongame]['amount']+"</p>");	
+						$("#log3").append("<p class = 'lose'> Location :"+Events[Ongame]['location']+"; Time: "+Events[Ongame]['time']+"; Amount: "+Events[Ongame]['amount']+"</p>");	
+					}
+					else{
+						$("#log1").append("<p class = 'noamount'> Location :"+Events[Ongame]['location']+"; Time: "+Events[Ongame]['time']+"; Amount: "+Events[Ongame]['amount']+"</p>");	
+					}
+
+				}
+
+
+				function getSum(total, num) {
+					return total + num;
+				}
+				function gameEnd(){
+					var totalwin = Wins.reduce(getSum);
+					var totallose = Loses.reduce(getSum);
+					if(Gold>=250){
+						alert('Congratulations!!!! You Won!!!! ');
+
+					}
+					else{
+						alert('Failed! You Lost! :(');
+					}
+					disable();
+				}
+				function disable(){
+					$('#ButtonCave').attr('disabled',true);
+					$('#ButtonHouse').attr('disabled',true);
+					$('#ButtonMine').attr('disabled',true);
+					$('#ButtonCasino').attr('disabled',true);
+				}
+				function check(){
+					if(Gold>=250 && Attempts >0){
+						var totalwin = Wins.reduce(getSum);
+						var totallose = Loses.reduce(getSum);
+						alert('Congratulations!!!!! You Won!!!!');
+						disable();
+					}
+				}
+
+				$(function(){
+					$('#ButtonNewGame').click(function() {
+						Attempts = 20;
+						Loses = [0];
+						Wins = [0];
+						Events = [];
+						Ongame = -1;
+						Gold = 0;
+						$('#Attempts').val(Attempts);
+						$('#Gold').val(Gold);
+			
+						$("#container").animate({
+							top: '500px',
+							left: '270px',
+						});
+						$("#log1").html("");
+						$("#log2").html("");
+						$("#log3").html("");	
+						$('#ButtonCave').attr('disabled',false);
+						$('#ButtonHouse').attr('disabled',false);
+						$('#ButtonMine').attr('disabled',false);
+						$('#ButtonCasino').attr('disabled',false);
+						$('#gained').val(0);
+						$('#lost').val(0);
+					});
+				});
+
+				$(function(){
+					$('#ButtonCave').click(function() {
+						$("#container").animate({
+							top: '700px',
+							left: '300px',
+						});
+						--Attempts;	
+						
+							$('#Attempts').val(Attempts);
+
+							Gold+=5;
+							Wins.push(5);
+							$('#Gold').val(Gold);
+				            $('#Gold').css({ 'background-color': 'green','color':'black'});
+							Events.push({location:'Cave',time: new Date().toLocaleString(), amount:5});
+							Ongame += 1;
+							output();
+							if(Attempts==0){
+								gameEnd();
+							}
+							check();
+							var totalwin = Wins.reduce(getSum);
+							$('#gained').val(totalwin);
+						});
+				});
+				$(function(){
+					$('#ButtonHouse').click(function() {
+						$("#container").animate({
+							top: '700px',
+							left: '650px',
+						});
+						--Attempts;	
+				
+						$('#Attempts').val(Attempts);
+						Percent = Math.floor((Math.random() * 10) + 1);
+						++Ongame;
+						if(Percent>2){
+							Gold+=10;
+							Wins.push(10);
+							$('#Gold').val(Gold);
+				            $('#Gold').css({ 'background-color': 'green','color':'black'});
+							Events.push({location:'House',time: new Date().toLocaleString(), amount:10});
+							var totalwin = Wins.reduce(getSum);
+							$('#gained').val(totalwin);
+
+
+						}
+						else{
+				        	$('#Gold').css({ 'background-color': 'black','color':'white'});
+							Events.push({location:'House',time: new Date().toLocaleString(), amount:0});
+							
+						}
+						output();
+						if(Attempts==0){
+							gameEnd();
+						}
+						check();
+					});
+				});
+				$(function(){
+					$('#ButtonMine').click(function() {
+						$("#container").animate({
+							top: '700px',
+							left: '1000px',
+						});
+						--Attempts;	
+		
+						$('#Attempts').val(Attempts);
+						Percent = Math.floor((Math.random() * 10) + 1);
+						var Score = Math.floor((Math.random() * 25));
+						++Ongame;
+						if(Percent>2){
+							Gold+=Score
+							Wins.push(Score);
+							$('#Gold').val(Gold);
+					        $('#Gold').css({ 'background-color': 'green','color':'black'});
+							Events.push({location:'Gold Mine',time: new Date().toLocaleString(), amount:Score});
+							var totalwin = Wins.reduce(getSum);
+							$('#gained').val(totalwin);
+						}
+						else{
+	                        $('#Gold').css({ 'background-color': 'black','color':'white'});
+							Events.push({location:'Gold Mine',time: new Date().toLocaleString(), amount:0});
+
+						}
+						output();
+						if(Attempts==0){
+							gameEnd();
+							disable();
+						}
+						check();
+					});
+				});
+				$(function(){
+					$('#ButtonCasino').click(function() {
+						$("#container").animate({
+							top: '700px',
+							left: '1300px',
+						});
+				
+
+					--Attempts;	
+					$('#Attempts').val(Attempts);
+
+					Percent = Math.floor((Math.random() * 10) + 1);
+					var Score =  Math.floor( Math.random() * ( 1 + 50 - 40 ) ) + 40;
+					++Ongame;
+					
+					if(Percent>5){
+
+						Gold+=Score;
+						Wins.push(Score);
+						$('#Gold').css({ 'background-color': 'green','color':'black'});
+						$('#Gold').val(Gold);
+						Events.push({location:'Casino',time: new Date().toLocaleString(), amount:Score});
+						var totalwin = Wins.reduce(getSum);
+						$('#gained').val(totalwin);
+					}
+					else{
+						Gold-=Score;
+						Loses.push(Score);
+						$('#Gold').val(Gold);
+						$('#Gold').css({ 'background-color': 'red','color':'black'});
+						Events.push({location:'Casino',time: new Date().toLocaleString(), amount:-Score});
+						var totalloss =Loses.reduce(getSum);
+						$('#lost').val(totalloss);
+					}
+					output();
+					if(Attempts==0){
+						gameEnd();
+					}
+					check();
+					
+				});
+				});
+			</script>
+
+		 
+		</body>
+		</html>

@@ -1,0 +1,153 @@
+.attemp{
+margin-left:300px;
+font-family: arial;
+color: white;
+}
+
+
+.score-gold{
+margin-right:300px;
+ float: right;
+ font-family: arial;
+color: white;
+
+}
+
+.pic-ninja{
+ height: 220px;
+ width: 350px; 
+ margin-left: -250px;
+ margin-top: -620px;"
+
+}
+
+.btn-new-game{
+margin-top:-550px;
+margin-left: 140px; 
+float; right;
+}
+.page-whole{
+	background-image:url("../Images/background.jpg") ;
+	width:100% ;
+	height:100%;
+    background-repeat: no-repeat;*/
+	background-size: cover;
+
+}
+.logtextbox{
+	padding-top: 5px; 
+	margin-left:90px;
+}
+
+#cont{
+	width: 900px;
+	 margin-top: -150px; 
+	 padding-left: 50px;
+	 border-radius: 10px;
+}
+.img{
+margin-top: -195px;
+	float:left;
+	width:40%;
+	height:100%;
+}
+.page{
+	padding-left: 18px;
+	margin-left: 10%;
+	margin-top: -10px;
+	width:1024px;
+	height: 100%;
+	background-color: transparent;
+	color:white
+	;
+
+}
+.textbox-margin{
+	margin-bottom: 10px;
+	color:black;
+	font-weight: bold;
+}
+.pic1{
+	margin-top: 140px;
+	margin-left: 40px;
+	width:800px;
+	height: 200px;
+}
+.new-game{
+	padding-top: 140px;
+	margin-top: -20px;
+	margin-left: 600px;
+	width:100px;
+	height: 40px;
+}
+.pic{
+	margin-top: -200px;
+	margin-left: 700px;
+	width:800px;
+	height: 200px;
+}
+
+.navbar{
+	margin-top: 100px;
+	margin-left: 10px;
+	width:80px;
+	height: 200px;
+
+}
+
+.text-boxes{
+	margin-top: 100px;
+	margin-left: 200px;
+	width:80px;
+	height: 200px;
+
+}
+#container{
+	z-index:99999;
+  	position:absolute;
+  	top: 500px;
+  	left: 275px;
+  	margin-top: -50px;
+  	margin-left: -50px;
+}
+.button-holder{
+	margin-top:-10px;
+	margin-left: 50px;
+}
+.buttons{
+	height:50px;
+	margin-top:10px;
+	width:200px;
+}
+.img-leftpadding{
+	padding-left: 20px;
+}
+.img-rightpadding{
+	padding-right:20px;
+
+}
+.textarea-dim{
+	margin-left:100px;
+}
+.pan-style{
+	 height:150px;
+	 overflow-y: auto;
+}
+.log-container{
+	width: 900px;
+	border: 1px solid white;
+	 margin-top: 20px; 
+	border-radius: 10px;
+}
+.win{
+	line-height: 20px;
+	color:green;
+}
+.lose{
+	line-height: 20px;
+	color:red;
+}
+.noamount{
+	line-height: 20px;
+	color:black;
+}
